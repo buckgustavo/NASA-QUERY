@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>NASA Exoplanet Archive Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nasa-nebula-bg"></div>
+    
+    <header class="main-nav">
+        <div class="top-bar">NASA EXOPLANET ARCHIVE</div>
+    </header>
+
+    <main class="dashboard-grid">
+        <div class="stats-row">
+            <div class="stat-box">
+                <span class="stat-value" id="kpi-count">0</span>
+                <span class="stat-label">Planetas Confirmados</span>
+            </div>
+           <div class="stat-box">
+                <span class="stat-value" id="kpi-hosts">0</span>
+                <span class="stat-label">Sistemas Hospedeiros</span>
+            </div>
+            <div class="stat-box secondary" id="btn-stats">
+                <span class="stat-label">VER MAIS INFORMAÇÕES</span>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <aside class="sidebar">
+                <div class="nasa-card">
+                    <div class="card-header">Explore the Archive</div>
+                    <div class="card-body">
+                        <div class="filter-group">
+                            <label>Ano</label>
+                            <select id="disc_year"><option value="">Todos</option></select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Método</label>
+                            <select id="discoverymethod"><option value="">Todos</option></select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Host</label>
+                            <select id="hostname"><option value="">Todos</option></select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Instalação</label>
+                            <select id="disc_facility"><option value="">Todos</option></select>
+                        </div>
+                        <button id="btn-search" class="nasa-btn">Search</button>
+                        <button id="btn-clear" class="nasa-btn link">Reset</button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="content">
+                <div class="nasa-card">
+                    <div class="card-header">Dados: Sistemas Planetários</div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-col="hostname">Host <span class="sort" data-dir="asc">▲</span></th>
+                                    <th data-col="disc_year">Ano <span class="sort" data-dir="asc">▲</span></th>
+                                    <th data-col="discoverymethod">método <span class="sort" data-dir="asc">▲</span></th>
+                                    <th data-col="disc_facility">Instalação <span class="sort" data-dir="asc">▲</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination hidden" id="pagination-controls">
+                        <button id="btn-prev">◄ Prev</button>
+                        <span id="page-info">Page 1</span>
+                        <button id="btn-next">Next ►</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="stats-modal" class="modal hidden">
+        <div class="modal-content nasa-card">
+            <div class="card-header">
+                Métodos de Descoberta (Dados Atuais)
+                <button id="close-modal" class="close-btn">✖</button>
+            </div>
+            <div class="card-body">
+                <canvas id="methodsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
